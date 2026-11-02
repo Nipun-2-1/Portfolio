@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nipun — Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===================================================================
+       0. CSS CUSTOM PROPERTIES — Warm, human palette
+       =================================================================== */
+    :root {
+      --bg-primary:    #111110;
+      --bg-secondary:  #1a1918;
+      --bg-card:       #1f1e1c;
+      --bg-card-hover: #252422;
+      --border:        #2e2c28;
+      --border-hover:  #3d3a34;
+
+      --text-primary:  #ede9e3;
+      --text-body:     #b8b0a4;
+      --text-muted:    #7d766c;
+
+      --accent:        #e8a84c;
+      --accent-soft:   #d4915a;
+      --accent-subtle: rgba(232, 168, 76, 0.10);
+      --accent-glow:   rgba(232, 168, 76, 0.15);
+
+      --warm-rose:     #c97b7b;
+      --warm-green:    #8fae7e;
+      --warm-blue:     #7e9ab5;
+
+      --radius:        12px;
+      --radius-lg:     20px;
+      --font-body:     'DM Sans', system-ui, -apple-system, sans-serif;
+      --font-serif:    'DM Serif Display', Georgia, serif;
+      --font-mono:     'JetBrains Mono', ui-monospace, monospace;
+      --nav-height:    64px;
+      --max-width:     960px;
+      --ease:          0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ===================================================================
+       1. RESET & BASE
+       =================================================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 24px);
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-body);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    /* ===================================================================
+       2. LAYOUT
+       =================================================================== */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    .section {
+      padding: 96px 0;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      border: none;
+      margin: 0;
+    }
+
+    /* ===================================================================
+       3. TYPOGRAPHY
+       =================================================================== */
+    .section-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 16px;
+      font-weight: 400;
+    }
+
+    .section-lead {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    /* ===================================================================
+       4. NAVIGATION
+       =================================================================== */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(17, 17, 16, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--text-primary);
+    }
+
+    .nav__links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav__links a {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color var(--ease);
+      letter-spacing: 0.01em;
+    }
+
+    .nav__links a:hover {
+      color: var(--text-primary);
+    }
+
+    /* Hamburger */
+    .nav__toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav__toggle span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: var(--ease);
+    }
+
+    /* ===================================================================
+       5. HERO
+       =================================================================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: var(--nav-height);
+    }
+
+    .hero .container {
+      display: flex;
+      align-items: center;
+      gap: 56px;
+    }
+
+    .hero__content {
+      flex: 1 1 55%;
+    }
+
+    .hero__wave {
+      font-size: 2rem;
+      display: inline-block;
+      animation: wave 2.5s ease-in-out infinite;
+      transform-origin: 70% 70%;
+      margin-bottom: 12px;
+    }
+
+    .hero__heading {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5.5vw, 3.4rem);
+      color: var(--text-primary);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      font-weight: 400;
+    }
+
+    .hero__heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero__description {
+      font-size: 1.02rem;
+      color: var(--text-body);
+      max-width: 460px;
+      margin-bottom: 32px;
+    }
+
+    .hero__cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: var(--font-body);
+      border: none;
+      cursor: pointer;
+      transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn--primary {
+      background: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .btn--primary:hover {
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--text-body);
+      border: 1px solid var(--border);
+    }
+
+    .btn--ghost:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+    }
+
+    /* Code window */
+    .hero__visual {
+      flex: 1 1 38%;
+      display: flex;
+      justify-content: center;
+      animation: floatIn 1s 0.3s ease both;
+    }
+
+    .code-window {
+      width: 100%;
+      max-width: 340px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-secondary);
+    }
+
+    .code-window__bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .code-window__dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+    }
+    .code-window__dot--r { background: #e5534b; }
+    .code-window__dot--y { background: #d29922; }
+    .code-window__dot--g { background: #57ab5a; }
+
+    .code-window__body {
+      padding: 16px 18px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+    }
+
+    .code-window__body .kw  { color: #d2a8ff; }
+    .code-window__body .fn  { color: #79c0ff; }
+    .code-window__body .str { color: #a5d6a7; }
+    .code-window__body .cm  { color: #484740; }
+    .code-window__body .op  { color: var(--text-muted); }
+
+    .code-window__body .line { display: block; }
+
+    .cursor-blink {
+      display: inline-block;
+      width: 7px; height: 14px;
+      background: var(--accent);
+      margin-left: 2px;
+      vertical-align: text-bottom;
+      animation: blink 1s step-end infinite;
+    }
+
+    /* ===================================================================
+       6. ABOUT
+       =================================================================== */
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .about__text p {
+      margin-bottom: 18px;
+      font-size: 0.95rem;
+    }
+
+    .about__text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .about__interests {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .interest-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color var(--ease), transform var(--ease);
+    }
+
+    .interest-item:hover {
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+    }
+
+    .interest-item__emoji {
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      width: 36px;
+      text-align: center;
+    }
+
+    .interest-item__text {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .interest-item__sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* ===================================================================
+       7. SKILLS
+       =================================================================== */
+    .skills__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      padding: 32px 24px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color var(--ease), transform var(--ease);
+    }
+
+    .skill-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+
+    .skill-card__icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .skill-card__icon svg {
+      width: 28px; height: 28px;
+    }
+
+    .skill-card__icon--python {
+      background: rgba(55, 118, 171, 0.12);
+    }
+
+    .skill-card__icon--html {
+      background: rgba(227, 118, 67, 0.12);
+    }
+
+    .skill-card__icon--more {
+      background: var(--accent-subtle);
+    }
+
+    .skill-card__name {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .skill-card__desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .skill-card--dashed {
+      border-style: dashed;
+      opacity: 0.6;
+    }
+
+    /* ===================================================================
+       8. PROJECTS
+       =================================================================== */
+    .projects__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      padding: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color var(--ease), transform var(--ease);
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .project-card__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: rgba(210, 153, 34, 0.1);
+      color: #d29922;
+      border: 1px solid rgba(210, 153, 34, 0.18);
+      width: fit-content;
+      margin-bottom: 8px;
+    }
+
+    .project-card__name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .project-card__desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      max-width: 520px;
+    }
+
+    .project-card__tech {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tech-tag {
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      background: var(--accent-subtle);
+      color: var(--accent);
+    }
+
+    .project-card__links {
+      display: flex;
+      gap: 8px;
+      align-self: start;
+      margin-top: 4px;
+    }
+
+    .project-card__link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      transition: color var(--ease), border-color var(--ease);
+    }
+
+    .project-card__link:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .project-card__link svg {
+      width: 16px; height: 16px;
+    }
+
+    /* ===================================================================
+       9. EDUCATION
+       =================================================================== */
+    .edu-card {
+      display: flex;
+      gap: 20px;
+      align-items: start;
+      max-width: 560px;
+    }
+
+    .edu-card__marker {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      padding-top: 6px;
+    }
+
+    .edu-card__dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .edu-card__line {
+      width: 2px;
+      height: 100%;
+      min-height: 60px;
+      background: var(--border);
+      border-radius: 2px;
+    }
+
+    .edu-card__body {
+      padding: 0 0 32px 0;
+    }
+
+    .edu-card__year {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .edu-card__degree {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .edu-card__school {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      margin-bottom: 2px;
+    }
+
+    .edu-card__info {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    /* ===================================================================
+       10. CONTACT
+       =================================================================== */
+    .contact__text {
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    .contact__links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 440px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color var(--ease), transform var(--ease);
+    }
+
+    .contact-link:hover {
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+    }
+
+    .contact-link__icon {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      background: var(--accent-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-link__icon svg {
+      width: 18px; height: 18px;
+    }
+
+    .contact-link__label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+
+    .contact-link__value {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    /* ===================================================================
+       11. FOOTER
+       =================================================================== */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+    }
+
+    .footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer__left {}
+
+    .footer__name {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    .footer__tagline {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .footer__right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer__copy {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .footer__top {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--accent);
+      transition: color var(--ease);
+    }
+
+    .footer__top:hover { color: var(--text-primary); }
+
+    /* ===================================================================
+       12. ANIMATIONS
+       =================================================================== */
+    @keyframes wave {
+      0%   { transform: rotate(0deg); }
+      10%  { transform: rotate(14deg); }
+      20%  { transform: rotate(-8deg); }
+      30%  { transform: rotate(14deg); }
+      40%  { transform: rotate(-4deg); }
+      50%  { transform: rotate(10deg); }
+      60%  { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up {
+      animation: fadeUp 0.6s ease both;
+    }
+    .fade-up.d1 { animation-delay: 0.05s; }
+    .fade-up.d2 { animation-delay: 0.10s; }
+    .fade-up.d3 { animation-delay: 0.15s; }
+    .fade-up.d4 { animation-delay: 0.20s; }
+    .fade-up.d5 { animation-delay: 0.25s; }
+
+    /* ===================================================================
+       13. RESPONSIVE
+       =================================================================== */
+    @media (max-width: 768px) {
+      .hero .container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero__description { margin-left: auto; margin-right: auto; }
+      .hero__cta { justify-content: center; }
+      .hero__visual { display: none; }
+      .about__grid { grid-template-columns: 1fr; gap: 36px; }
+      .project-card { grid-template-columns: 1fr; }
+      .project-card__links { margin-top: 12px; }
+      .footer .container { flex-direction: column; text-align: center; }
+      .footer__right { flex-direction: column; gap: 10px; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --nav-height: 56px; }
+
+      .section { padding: 64px 0; }
+
+      .nav__links {
+        position: fixed;
+        top: var(--nav-height);
+        left: 0; right: 0;
+        background: rgba(17, 17, 16, 0.97);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        padding: 4px 0;
+        border-bottom: 1px solid var(--border);
+        transform: translateY(-120%);
+        transition: transform var(--ease);
+        z-index: 999;
+      }
+
+      .nav__links a {
+        display: block;
+        padding: 12px 24px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav__links.active {
+        transform: translateY(0);
+      }
+
+      .nav__toggle { display: flex; }
+
+      .skills__grid { grid-template-columns: 1fr; }
+
+      .hero__heading { font-size: 1.9rem; }
+
+      .hero__cta { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =================================================================
+       NAVIGATION
+       ================================================================= -->
+  <nav class="nav">
+    <div class="container">
+      <a href="#hero" class="nav__logo">Nipun</a>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#hero"      onclick="closeMenu()">Home</a></li>
+        <li><a href="#about"     onclick="closeMenu()">About</a></li>
+        <li><a href="#skills"    onclick="closeMenu()">Skills</a></li>
+        <li><a href="#projects"  onclick="closeMenu()">Projects</a></li>
+        <li><a href="#education" onclick="closeMenu()">Education</a></li>
+        <li><a href="#contact"   onclick="closeMenu()">Contact</a></li>
+      </ul>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =================================================================
+       HERO
+       ================================================================= -->
+  <header class="hero section" id="hero">
+    <div class="container">
+      <div class="hero__content">
+        <div class="hero__wave fade-up">👋</div>
+
+        <h1 class="hero__heading fade-up d1">
+          Hey, I'm <em>Nipun</em>.<br />
+          I like building things.
+        </h1>
+
+        <p class="hero__description fade-up d2">
+          I'm a first-year Computer Science &amp; AI student who's curious about
+          how technology works — and even more curious about what I can create with
+          it. Currently learning the ropes, one line of code at a time.
+        </p>
+
+        <div class="hero__cta fade-up d3">
+          <a href="#projects" class="btn btn--primary">See what I'm working on &darr;</a>
+          <a href="#contact" class="btn btn--ghost">Say hello</a>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <div class="code-window">
+          <div class="code-window__bar">
+            <span class="code-window__dot code-window__dot--r"></span>
+            <span class="code-window__dot code-window__dot--y"></span>
+            <span class="code-window__dot code-window__dot--g"></span>
+          </div>
+          <div class="code-window__body">
+            <span class="line"><span class="cm"># about_me.py</span></span>
+            <span class="line">&nbsp;</span>
+            <span class="line"><span class="kw">class</span> <span class="fn">Nipun</span><span class="op">:</span></span>
+            <span class="line">&nbsp;&nbsp;name&nbsp;&nbsp; <span class="op">=</span> <span class="str">"Nipun"</span></span>
+            <span class="line">&nbsp;&nbsp;role&nbsp;&nbsp; <span class="op">=</span> <span class="str">"Student"</span></span>
+            <span class="line">&nbsp;&nbsp;year&nbsp;&nbsp; <span class="op">=</span> <span class="str">"1st Year"</span></span>
+            <span class="line">&nbsp;&nbsp;loves&nbsp; <span class="op">=</span> [<span class="str">"code"</span>, <span class="str">"AI"</span>,</span>
+            <span class="line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"learning"</span>]</span>
+            <span class="line">&nbsp;</span>
+            <span class="line">&nbsp;&nbsp;<span class="kw">def</span> <span class="fn">status</span><span class="op">(</span>self<span class="op">):</span></span>
+            <span class="line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="str">"building..."</span><span class="cursor-blink"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <hr class="divider" />
+
+  <!-- =================================================================
+       ABOUT
+       ================================================================= -->
+  <section class="section" id="about">
+    <div class="container">
+      <span class="section-eyebrow fade-up">About</span>
+      <h2 class="section-heading fade-up d1">A bit about me.</h2>
+      <p class="section-lead fade-up d2">
+        The short version — who I am and what gets me excited.
+      </p>
+
+      <div class="about__grid">
+        <div class="about__text fade-up d3">
+          <p>
+            I'm <strong>Nipun</strong> — a first-year <strong>B.Tech Computer Science
+            and Artificial Intelligence</strong> student at <strong>Newton School of
+            Technology, Rishihood University</strong>.
+          </p>
+          <p>
+            I got into tech because I'm genuinely curious about how things work.
+            Not just using apps and tools, but understanding what's happening under
+            the hood — the logic, the algorithms, the craft of turning ideas into
+            working software.
+          </p>
+          <p>
+            Right now I'm early in my journey, and that's kind of the exciting part.
+            Everything is new. I'm picking up Python, getting comfortable with HTML,
+            and starting to explore what's possible with artificial intelligence.
+            I don't have years of experience yet — but I've got energy, focus, and
+            a long list of things I want to build.
+          </p>
+        </div>
+
+        <div class="about__interests fade-up d4">
+          <div class="interest-item">
+            <span class="interest-item__emoji">💻</span>
+            <div>
+              <div class="interest-item__text">Programming</div>
+              <div class="interest-item__sub">Solving problems with code</div>
+            </div>
+          </div>
+          <div class="interest-item">
+            <span class="interest-item__emoji">🧠</span>
+            <div>
+              <div class="interest-item__text">Artificial Intelligence</div>
+              <div class="interest-item__sub">How machines learn &amp; decide</div>
+            </div>
+          </div>
+          <div class="interest-item">
+            <span class="interest-item__emoji">🌍</span>
+            <div>
+              <div class="interest-item__text">Web Development</div>
+              <div class="interest-item__sub">Building things people can use</div>
+            </div>
+          </div>
+          <div class="interest-item">
+            <span class="interest-item__emoji">📚</span>
+            <div>
+              <div class="interest-item__text">Always Learning</div>
+              <div class="interest-item__sub">New tools, new ideas, every day</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- =================================================================
+       SKILLS
+       ================================================================= -->
+  <section class="section" id="skills">
+    <div class="container">
+      <span class="section-eyebrow fade-up">Skills</span>
+      <h2 class="section-heading fade-up d1">What I work with.</h2>
+      <p class="section-lead fade-up d2">
+        My current toolkit — small but growing every week.
+      </p>
+
+      <div class="skills__grid">
+        <!-- Python -->
+        <div class="skill-card fade-up d3">
+          <div class="skill-card__icon skill-card__icon--python">
+            <svg viewBox="0 0 64 64" fill="none">
+              <path d="M31.9 4C18.4 4 19.4 10 19.4 10l.02 6.2H32.4v1.9H13.8S4 20.8 4 32.1s8.5 10.9 8.5 10.9h5.1v-5.3s-.3-8.5 8.4-8.5h14.4s8.1.1 8.1-7.9V12.2S49.8 4 31.9 4zm-8 4.7a2.6 2.6 0 110 5.2 2.6 2.6 0 010-5.2z" fill="#3776AB"/>
+              <path d="M32.1 60c13.5 0 12.5-6 12.5-6l-.02-6.2H31.6v-1.9h18.6S60 47.2 60 35.9s-8.5-10.9-8.5-10.9h-5.1v5.3s.3 8.5-8.4 8.5H23.6s-8.1-.1-8.1 7.9v9.1S14.2 60 32.1 60zm8-4.7a2.6 2.6 0 110-5.2 2.6 2.6 0 010 5.2z" fill="#FFD43B"/>
+            </svg>
+          </div>
+          <div class="skill-card__name">Python</div>
+          <div class="skill-card__desc">Scripting, problem-solving, and exploring the language</div>
+        </div>
+
+        <!-- HTML -->
+        <div class="skill-card fade-up d4">
+          <div class="skill-card__icon skill-card__icon--html">
+            <svg viewBox="0 0 64 64" fill="none">
+              <path d="M8 4l4.8 52L32 60l19.2-4L56 4H8z" fill="#E34F26"/>
+              <path d="M32 8v48l15.3-4.2L51.1 8H32z" fill="#EF652A"/>
+              <path d="M17.3 16h29.4l-1 11H24.5l.7 7.8h20.4l-1.1 12.3L32 50.4l-12.5-3.3L18.6 36h6.2l.4 5 6.8 1.8 6.9-1.8.7-7.8H18.1L17.3 16z" fill="#fff"/>
+            </svg>
+          </div>
+          <div class="skill-card__name">HTML</div>
+          <div class="skill-card__desc">Structuring content and building pages from scratch</div>
+        </div>
+
+        <!-- Coming Soon -->
+        <div class="skill-card skill-card--dashed fade-up d5">
+          <div class="skill-card__icon skill-card__icon--more">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="28" height="28" color="#e8a84c">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+          <div class="skill-card__name">More on the way</div>
+          <div class="skill-card__desc">CSS, JavaScript, and whatever comes next</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- =================================================================
+       PROJECTS
+       ================================================================= -->
+  <section class="section" id="projects">
+    <div class="container">
+      <span class="section-eyebrow fade-up">Projects</span>
+      <h2 class="section-heading fade-up d1">Things I'm building.</h2>
+      <p class="section-lead fade-up d2">
+        Placeholder spots for projects I'll add as I build them.
+        Check back soon!
+      </p>
+
+      <div class="projects__grid">
+        <!-- Project 1 -->
+        <div class="project-card fade-up d3">
+          <div>
+            <div class="project-card__badge">Placeholder</div>
+            <h3 class="project-card__name">Project Name One</h3>
+            <p class="project-card__desc">
+              A short description of the project — what it does, why you built it,
+              and what you learned. Replace this with your own details.
+            </p>
+            <div class="project-card__tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">HTML</span>
+            </div>
+          </div>
+          <div class="project-card__links">
+            <a href="#" class="project-card__link" title="GitHub" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </a>
+            <a href="#" class="project-card__link" title="Live Demo" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-card fade-up d4">
+          <div>
+            <div class="project-card__badge">Placeholder</div>
+            <h3 class="project-card__name">Project Name Two</h3>
+            <p class="project-card__desc">
+              Describe your project here — what problem does it solve? What
+              technologies did you use? Add your own details when ready.
+            </p>
+            <div class="project-card__tech">
+              <span class="tech-tag">Python</span>
+            </div>
+          </div>
+          <div class="project-card__links">
+            <a href="#" class="project-card__link" title="GitHub" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </a>
+            <a href="#" class="project-card__link" title="Live Demo" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-card fade-up d5">
+          <div>
+            <div class="project-card__badge">Placeholder</div>
+            <h3 class="project-card__name">Project Name Three</h3>
+            <p class="project-card__desc">
+              Your third project goes here. Share what inspired you, what you
+              built, and what you took away from it.
+            </p>
+            <div class="project-card__tech">
+              <span class="tech-tag">HTML</span>
+              <span class="tech-tag">CSS</span>
+            </div>
+          </div>
+          <div class="project-card__links">
+            <a href="#" class="project-card__link" title="GitHub" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+            </a>
+            <a href="#" class="project-card__link" title="Live Demo" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- =================================================================
+       EDUCATION
+       ================================================================= -->
+  <section class="section" id="education">
+    <div class="container">
+      <span class="section-eyebrow fade-up">Education</span>
+      <h2 class="section-heading fade-up d1">Where I'm learning.</h2>
+      <p class="section-lead fade-up d2">
+        My academic home base.
+      </p>
+
+      <div class="edu-card fade-up d3">
+        <div class="edu-card__marker">
+          <div class="edu-card__dot"></div>
+          <div class="edu-card__line"></div>
+        </div>
+        <div class="edu-card__body">
+          <div class="edu-card__year">2025 — Present</div>
+          <div class="edu-card__degree">B.Tech in Computer Science &amp; Artificial Intelligence</div>
+          <div class="edu-card__school">Newton School of Technology</div>
+          <div class="edu-card__info">Rishihood University · First Year</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- =================================================================
+       CONTACT
+       ================================================================= -->
+  <section class="section" id="contact">
+    <div class="container">
+      <span class="section-eyebrow fade-up">Contact</span>
+      <h2 class="section-heading fade-up d1">Let's talk.</h2>
+      <p class="contact__text fade-up d2">
+        I'm always happy to connect — whether it's about a project idea,
+        a collaboration, or just a conversation about tech. Drop me a line.
+      </p>
+
+      <div class="contact__links">
+        <!-- Email -->
+        <a href="mailto:your.email@example.com" class="contact-link fade-up d3">
+          <div class="contact-link__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#e8a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+          </div>
+          <div>
+            <div class="contact-link__label">Email</div>
+            <div class="contact-link__value">your.email@example.com</div>
+          </div>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" class="contact-link fade-up d4">
+          <div class="contact-link__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#e8a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          </div>
+          <div>
+            <div class="contact-link__label">GitHub</div>
+            <div class="contact-link__value">github.com/your-username</div>
+          </div>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" class="contact-link fade-up d5">
+          <div class="contact-link__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#e8a84c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div>
+            <div class="contact-link__label">LinkedIn</div>
+            <div class="contact-link__value">linkedin.com/in/your-profile</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================================================================
+       FOOTER
+       ================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__left">
+        <div class="footer__name">Nipun</div>
+        <div class="footer__tagline">Learning, Building, and Growing.</div>
+      </div>
+      <div class="footer__right">
+        <span class="footer__copy">&copy; 2026 Nipun</span>
+        <a href="#hero" class="footer__top">&uarr; Top</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile menu toggle (minimal inline script) -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('active');
+    }
+    function closeMenu() {
+      document.getElementById('navLinks').classList.remove('active');
+    }
+  </script>
+
+</body>
+</html>

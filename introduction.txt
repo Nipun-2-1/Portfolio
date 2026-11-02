@@ -1,0 +1,9 @@
+name: Nipun
+class:1st year
+college:Newton school of technology,Rishihood University
+Course:B.tech cs ai
+Skill:Python,HTML
+
+what I want-
+one index.html file with html and css
+it should have the whole portfolio
